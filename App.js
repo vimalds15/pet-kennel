@@ -1,16 +1,28 @@
 import { StatusBar } from "expo-status-bar";
+import AppLoading from "expo-app-loading";
+// import { useFonts } from "expo-font";
 import { StyleSheet, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
+import {
+  useFonts,
+  Montserrat_400Regular,
+  Montserrat_600SemiBold,
+  Montserrat_700Bold
+} from "@expo-google-fonts/montserrat"
+
 import HomeScreen from "./src/app/screens/HomeScreen";
 import BookingScreen from "./src/app/screens/BookingScreen";
 import SupportScreen from "./src/app/screens/SupportScreen";
 
+
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -22,6 +34,7 @@ export default function App() {
           tabBarIconStyle: {
             minHeight: 40,
           },
+          headerShown:false
         }}
       >
         <Tab.Screen
@@ -55,5 +68,6 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
 
 const styles = StyleSheet.create({});

@@ -3,7 +3,6 @@ import React from "react";
 import Logo from "../../../assets/logo.png";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-const swidth = Dimensions.get("window").width;
 
 const PlaceCard = ({navigation}) => {
   console.log(navigation)
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     flexDirection:"row",
     padding:8,
     borderRadius:5,
-    minHeight:120,
+    height:120,
     shadowColor:"black",
     shadowOffset:{width:0,height:1},
     shadowOpacity:0.1,
@@ -88,10 +87,10 @@ const styles = StyleSheet.create({
     marginLeft:5,
   },
   textBold:{
-    fontFamily:"montserrat",
+    
     fontWeight:"bold",
   },
   text:{
-    fontFamily:"montserrat"
+    
   }
 });

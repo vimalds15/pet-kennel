@@ -1,13 +1,13 @@
 import {
   Image,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useEffect } from "react";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Logo from "../../../../assets/logo.png";
@@ -71,7 +71,7 @@ const Home = ({ navigation }) => {
                   borderWidth: 0,
                   backgroundColor: "#e3e3e3",
                   paddingBottom: 2,
-                  fontFamily:"montserrat"
+                  
                 }}
                 placeholder="Search Place..."
                 placeholderTextColor={"black"}
@@ -100,6 +100,25 @@ const Home = ({ navigation }) => {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <Pressable onPress={()=>navigation.navigate('detail')}>
+        <PlaceCard />
+      </Pressable>
+
+      <Pressable onPress={()=>navigation.navigate('detail')}>
+        <PlaceCard />
+      </Pressable>
+      <Pressable onPress={()=>navigation.navigate('detail')}>
+        <PlaceCard />
+      </Pressable>
+      <Pressable onPress={()=>navigation.navigate('detail')}>
+        <PlaceCard />
+      </Pressable>
+      <Pressable onPress={()=>navigation.navigate('detail')}>
+        <PlaceCard />
+      </Pressable>
+      <Pressable onPress={()=>navigation.navigate('detail')}>
+        <PlaceCard />
+      </Pressable>
       <Pressable onPress={()=>navigation.navigate('detail')}>
         <PlaceCard />
       </Pressable>
