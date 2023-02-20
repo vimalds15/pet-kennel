@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import {getAuth,createUserWithEmailAndPassword} from "firebase/auth"
+import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth"
+import {getFirestore} from "firebase/firestore"
 // Optionally import the services that you want to use
 
 // Initialize Firebase
@@ -15,6 +16,7 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 
+export const db = getFirestore(app);
 
 const auth=getAuth();
 
@@ -33,17 +35,16 @@ export const handleSignUp = async (email, password) => {
       });
   };
 
-//   export const handleSignIn = async (email, password) => {
-//     await firebase
-//       .auth()
-//       .signInWithEmailAndPassword(email, password)
-//       .then(() => {
-//         console.log(firebase.auth().currentUser);
-//       })
-//       .catch((error) => {
-//         console.error(error);
-//       });
-//   };
+  export const handleSignIn = async (email, password) => {
+    await
+      signInWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log(firebase.auth().currentUser);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
 //   export const handleSignout = async () => {
 //     await firebase
@@ -56,3 +57,4 @@ export const handleSignUp = async (email, password) => {
 //         console.error(error);
 //       });
 //   };
+

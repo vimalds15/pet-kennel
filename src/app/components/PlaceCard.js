@@ -1,17 +1,46 @@
 import { Image, StyleSheet, Text, View, Dimensions } from "react-native";
-import React from "react";
+import React,{useEffect, useState} from "react";
 import Logo from "../../../assets/logo.png";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 
-const PlaceCard = ({navigation}) => {
-  console.log(navigation)
+const PlaceCard = (props) => {
+  // console.log(navigation)
+  const [state,setState] = useState({
+    name:"",
+    email:"",
+    num:0,
+    desc:"",
+    lmark:"",
+    img:"",
+    amentities:[],
+    address:""
+  })
+
+  const mapState = () => {
+    setState({
+      name:props?.name,
+      email:props?.email,
+      num:props?.call,
+      desc:props?.description,
+      amentities:props?.amentities,
+      img:props?.image,
+      lmark:props?.landmark,
+      address:props?.address
+    })
+  }
+
+  useEffect(()=>{
+    mapState()
+  },[])
+
+  
   return (
     <View style={styles.container}>
       <View style={styles.imageCont}>
         <Image
           source={{
-            uri: "https://www.mydomaine.com/thmb/dke2LC6lH21Pvqwd2lI6AIutnDY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SuCasaDesign-Modern-9335be77ca0446c7883c5cf8d974e47c.jpg",
+            uri: state?.img,
           }}
           style={{
             height: "100%",
@@ -22,15 +51,15 @@ const PlaceCard = ({navigation}) => {
         />
       </View>
       <View style={styles.descCont}>
-        <Text style={styles.textBold}>ChinoCappin Pet Shelter</Text>
+        <Text style={styles.textBold}>{state?.name}</Text>
         <View>
         <View style={styles.addressCont}>
           <MaterialIcons name="location-pin" color={"black"} size={20} />
-          <Text style={styles.text}>No 17/4, Renuka Street, Porur </Text>
+          <Text style={styles.text}>{state?.address}</Text>
         </View>
         <View style={styles.landmarkCont}>
           <Text style={styles.textBold}>Landmark:</Text>
-          <Text style={styles.text}> Near CSI Bishop Church</Text>
+          <Text style={styles.text}> {state?.landmark}</Text>
         </View>
         </View>
         <View style={styles.ratingCont}>
@@ -57,6 +86,7 @@ const styles = StyleSheet.create({
     padding:8,
     borderRadius:5,
     height:120,
+    elevation:1,
     shadowColor:"black",
     shadowOffset:{width:0,height:1},
     shadowOpacity:0.1,
