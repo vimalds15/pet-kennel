@@ -16,6 +16,8 @@ import {
 import HomeScreen from "./src/app/screens/HomeScreen";
 import BookingScreen from "./src/app/screens/BookingScreen";
 import SupportScreen from "./src/app/screens/SupportScreen";
+import { Provider } from "react-redux";
+import { store } from "./src/features/store";
 
 
 
@@ -24,9 +26,10 @@ const Tab = createBottomTabNavigator();
 export default function App() {
 
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="home"
+        initialRouteName="home-screen"
         screenOptions={{
           tabBarShowLabel: false,
           tabBarActiveTintColor: "black",
@@ -38,7 +41,7 @@ export default function App() {
         }}
       >
         <Tab.Screen
-          name="home"
+          name="home-screen"
           component={HomeScreen}
           options={{
             tabBarIcon: ({ size, color }) => (
@@ -47,7 +50,7 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="booking"
+          name="booking-screen"
           component={BookingScreen}
           options={{
             tabBarIcon: ({ size, color }) => (
@@ -56,7 +59,7 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="support"
+          name="support-screen"
           component={SupportScreen}
           options={{
             tabBarIcon: ({ size, color }) => (
@@ -66,6 +69,7 @@ export default function App() {
         />
       </Tab.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
 
