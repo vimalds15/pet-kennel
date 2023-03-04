@@ -8,16 +8,17 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import React, { useEffect,useState } from "react";
+import React, { useEffect } from "react";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Logo from "../../../../assets/logo.png";
 import PlaceCard from "../../components/PlaceCard";
-import {collection,getDocs,addDoc} from "firebase/firestore"
-import { db } from "../../../../firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPlaces } from "../../../features/place/PlaceSlice";
 
 
 const Home = ({ navigation }) => {
-  const [data,setData]=useState([])
+  const places = useSelector(state=>state.place.allPlaces)
+  const dispatch = useDispatch()
 
   const setHeader = () => {
     navigation.setOptions({
@@ -102,24 +103,19 @@ const Home = ({ navigation }) => {
     })
   }
 
-  const fetchClasses = async () => {
-    const snapshot = await getDocs(collection(db, "places"));
-    const newData = snapshot.docs.map(doc => ({id:doc.id,...doc.data()})) 
-    setData(newData);
-    console.log(data)
-    };
-  
+
 
   useEffect(() =>{
       setHeader()
-      fetchClasses()
-    },[data.length]);
+      dispatch(getAllPlaces())
+    },[]);
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      {data?.map(dat=>
+      {places?.map(dat=>
         <Pressable key={dat.id} onPress={()=>navigation.navigate('detail',dat)}>
         <PlaceCard {...dat}  />
+        {/* <Text>HIi</Text> */}
       </Pressable>
       )}
     </ScrollView>
