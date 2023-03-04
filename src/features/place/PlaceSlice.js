@@ -12,7 +12,7 @@ const PlaceSlice = createSlice({
   initialState,
   reducers: {
     setPlaces: (state,action) => {
-        state.places = action.payload
+        state.allPlaces = action.payload
     },
     setCurrentPlace: (state,action) => {
         state.currentPlace=action.payload
@@ -27,7 +27,9 @@ export const getAllPlaces = () => {
         try{const placesDocRef= collection(db,"places");
         const placesDocSnapshot = await getDocs(placesDocRef)
         const places = placesDocSnapshot.docs.map(doc=> ({id:doc.id,...doc.data()}))
-        dispatch(setPlaces(places))}
+        dispatch(setPlaces(places))
+        console.log("places",places)
+    }
         catch(err){
             console.log("Error fetching places",err.message)
         }
