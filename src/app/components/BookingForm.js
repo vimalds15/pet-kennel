@@ -135,4 +135,9 @@ const styles = StyleSheet.create({
   dateText: {
     marginLeft: 5,
   },
+  textInput:{
+    outlineStyle:"none",
+    minHeight:30,
+    fontWeight:"600"
+  }
 });

@@ -110,15 +110,6 @@ const Home = ({ navigation }) => {
     };
   
 
-//   const docRef = await addDoc(collection,(db,"places"),[
-//     {
-//       name:"Richie shelter and care",
-//       amentities:{
-        
-//       }
-//     },
-// ])
-
   useEffect(() =>{
       setHeader()
       fetchClasses()
@@ -127,7 +118,7 @@ const Home = ({ navigation }) => {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       {data?.map(dat=>
-        <Pressable onPress={()=>navigation.navigate('detail')}>
+        <Pressable key={dat.id} onPress={()=>navigation.navigate('detail',dat)}>
         <PlaceCard {...dat}  />
       </Pressable>
       )}

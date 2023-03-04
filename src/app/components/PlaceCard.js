@@ -8,12 +8,8 @@ const PlaceCard = (props) => {
   // console.log(navigation)
   const [state,setState] = useState({
     name:"",
-    email:"",
-    num:0,
-    desc:"",
     lmark:"",
     img:"",
-    amentities:[],
     address:""
   })
 

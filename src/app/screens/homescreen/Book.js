@@ -1,13 +1,27 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import BookingForm from '../../components/BookingForm'
 
-const Book = ({navigation}) => {
+const Book = ({route,navigation}) => {
+  const [state,setState] =  useState({
+    id:"",
+    name:""
+  })
+
+  const mapState = () => {
+    setState({
+      id:route?.params?.id,
+      name:route?.params?.name
+    })
+  }
+
   useEffect(()=>{
     navigation.setOptions({
-      title:"Book your place"
+      headerTitle:state?.name
     })
-  })
+    mapState()
+    console.log(route)
+  },[state.name])
 
   return (
     <View style={styles.container}> 
@@ -20,6 +34,6 @@ export default Book
 
 const styles = StyleSheet.create({
   container:{
-    padding:10
+    padding:20
   }
 })
